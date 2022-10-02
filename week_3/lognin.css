@@ -1,0 +1,157 @@
+body{
+    color: #E9E9E9;              
+    font-family: "Motiva Sans", Sans-serif;
+    font-weight: normal;
+}
+.logninText{
+    text-align: center;
+    color: #fff;
+    font-size: 32px;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+}
+
+
+.login{
+    
+    width: 300px;
+    height: 310px;               
+    background-color: #181A21;
+    min-width: 0px;
+    text-align: center;                
+    margin: 0 auto;            
+
+}
+
+.login input{
+    width: 200px;
+    height: 35px;
+    border: 1px solid grey;
+    padding-left: 20px ;
+    background-color: #8B929A;
+}
+
+.login .check input{
+    width: 10px;
+    height: 10px;
+    color: #8B929A;
+}
+       
+.login button{
+    width: 220px;
+    height: 38px;
+    border: none;
+    background-color: #1999FF;
+    color: white;
+}
+
+.login a{
+    color: #aca6a6;
+}
+
+.login p{
+    display: inline-block;
+
+    padding-left: 40px;
+    margin: 0px;
+    color: #aca6a6;
+}
+
+.qr .newBeta{
+    
+    margin-left: 0px;
+    margin-right: 78px;
+    text-align: left;
+    display: inline-block;
+    padding-bottom: 8px;
+}
+
+.login .check{
+    float: left; /* để cho nó nhảy về bên trái*/
+    padding-left: 40px;
+    color: #aca6a6;
+}
+
+.login .check input{
+    width: 15px;
+    height: 15px;
+}
+
+.qr{
+    width: 200px;
+    height: 310px;
+    float:left;
+    margin:0 auto;
+    color: #aca6a6;
+    padding-left: 40px;
+    padding-right: 60px;
+
+}
+
+.box2{
+    float: left;
+}
+
+.textt{
+    width: 140px;
+    height: 70px;
+    font-size: small;
+    padding-left: 38px;
+    padding-top: 8px;
+    text-align: left;
+    color: #aca6a6;
+}
+
+.qr .imgQr{
+    width: 7px;
+    height: 70px;
+    text-align: left;
+    padding-top: 15px;
+}
+
+.qr .qrButton button{
+    width: 85px;
+    height: 35px;
+    border: none;
+    background-color: #8B929A;
+    color: white;
+    margin-right: 120px;
+                  
+}
+
+.qr .qrtext1 a{
+    color: #aca6a6;
+    margin-left: 0px;
+    margin-right: 20px;
+    text-align: left;
+    display: inline-block;
+}
+
+
+#bigBox .box{
+    
+    padding-top: 30px;
+    background-color: #181A21;
+    min-width: 0px;
+    text-align: center;
+    border-radius: 0; 
+    float: left;
+    margin: 0 auto;
+   
+    /* padding: 20px; */
+    display: block;
+       
+}
+
+
+.boxmom{
+    width: 100vw;
+    height: 100vh;
+    margin: -10px;
+    background-image:linear-gradient( rgba(214, 214, 151, 0.011), rgba(214, 214, 151, 0.011)), 
+    url(https://store.akamai.steamstatic.com/public/shared/images/joinsteam/new_login_bg_strong_mask.jpg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}

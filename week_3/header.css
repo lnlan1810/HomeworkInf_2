@@ -1,0 +1,230 @@
+#global_header {
+	background: #171a21;
+	background-position: center top;
+	min-width: 940px;
+	font-family: "Motiva Sans", Sans-serif;
+    font-weight: normal;
+    margin-left: -10px;
+    margin-right: -10px;
+	font-size: 14px;
+}
+
+#global_header
+{
+	position: relative;
+	z-index: 151;
+}
+
+#global_header .content {
+	background: #171a21;
+	position: relative;
+	width: 940px;
+	height: 104px;
+	margin: 0px auto;
+    margin-bottom: 10px;
+	z-index: 402;
+}
+
+#global_actions {
+	position: absolute;
+	right: 0px;
+	top: 6px;
+
+	height: 21px;
+	line-height: 21px;
+
+	color: #b8b6b4;
+	font-size: 11px;
+
+	z-index: 401;
+}
+
+#global_actions a.global_action_link {
+	padding: 0 4px;
+}
+
+#global_actions a.global_action_link, div.admin_actions a.global_action_link {
+	color: #b8b6b4;
+}
+
+#global_actions .global_action_link:hover, div.admin_actions .global_action_link:hover {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+#global_actions #global_action_menu {
+	line-height: 24px;
+	vertical-align: top;
+	display: inline-block;
+}
+
+#global_action_menu > * {
+	vertical-align: top;
+}
+
+#global_header div.logo {
+	float: left;
+	padding-top: 30px;
+	margin-right: 40px;
+	width: 176px;
+	height: 44px;
+}
+
+#global_header .menuitem {
+	display: block;
+	position: relative;
+
+	padding-top: 45px;
+	padding-left: 7px;
+	padding-right: 7px;
+	padding-bottom: 7px;
+	line-height: 16px;
+
+	float: left;
+	font-size: 14px;
+	color: #b8b6b4;
+	text-transform: uppercase;
+}
+
+#global_header .menuitem.active, div#global_header .menuitem:hover {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+#global_header .menuitem.active {
+	background-image: url( 'https://community.akamai.steamstatic.com/public/shared/images/header/globalheader_highlight.png' );
+	background-repeat: repeat-x;
+}
+
+
+.header_installsteam_btn {
+	display: inline-block;
+	position: relative;
+	height: 21px;
+	line-height: 24px;
+	margin-right: 3px;
+}
+
+.header_installsteam_btn_green .header_installsteam_btn_leftcap, .header_installsteam_btn_green .header_installsteam_btn_rightcap, .header_installsteam_btn_green .header_installsteam_btn_content {
+	background-color: #5c7e10;
+}
+
+.header_installsteam_btn_gray .header_installsteam_btn_leftcap, .header_installsteam_btn_gray .header_installsteam_btn_rightcap, .header_installsteam_btn_gray .header_installsteam_btn_content {
+	background-color: #616a72;
+}
+
+.header_installsteam_btn_content {
+	display: inline-block;
+	padding-left: 35px;
+	padding-right: 9px;
+	background-position: 10px 5px;
+
+	background-image: url( 'https://community.akamai.steamstatic.com/public/shared/images/header/btn_header_installsteam_download.png?v=1' );
+	background-repeat:	no-repeat;
+	text-decoration: none;
+	color: #e5e4dc;
+	font-weight: normal;
+}
+
+.header_installsteam_btn_content:hover {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+
+#main-menu{
+   
+    list-style: none;
+   
+}
+
+#main-menu li{
+    position : relative;
+}
+
+#main-menu li a{
+    color: #9b9595;
+    display: block;
+    padding: 4px 18px;
+    text-decoration: none;
+}
+
+#main-menu  ul.sub-menu{
+    margin-top: 70px;
+    margin-left: 170px;
+    position: absolute;
+    background-color: #171a21;
+    padding: 15px 0px;
+    list-style: none;
+    width: 150px;
+    border: 1px solid #1e1c1c;
+    display: none; /*ẩn các menu con đi*/
+}
+
+#main-menu li:hover>ul.sub-menu{ /*khi di chuot vao li thi menu con se hien ra*/
+    display: block;
+}
+
+#main-menu li:hover a{ /*lam sangs chu... khi di chuot vao*/
+    color: #dad8d8;
+}
+
+.menuitem{
+    text-decoration: none;
+}
+
+
+ #boxLanguage li{
+    position : relative;
+    list-style: none;
+}
+
+ #boxLanguage li a{
+    color: #b1abab;
+    display: block;             
+    text-decoration: none;
+    
+}
+
+#boxLanguage ul.lang{
+    position: absolute;
+    background-color: #171a21;
+   
+    list-style: none;
+    width: 150px;
+    border: 1px solid #1e1c1c;
+    display: none; /*ẩn các menu con đi*/
+}
+
+#boxLanguage li:hover>ul.lang{ /*khi di chuot vao li thi menu con se hien ra*/
+    display: block;
+}
+
+#boxLanguage ul.lang a{
+   
+    border-bottom: 1px  #434343;    
+    left: 0;
+}
+
+#boxLanguage li:hover a{ 
+    color: #dad8d8;
+}
+
+#boxLanguage ul.lang a{
+   
+    color: #b1abab;
+    left: 0;
+}
+
+#boxLanguage ul.lang li:hover a{
+    color: #dad8d8;
+}
+
+span{
+    display: inline-block;
+}
+
+#boxLanguage{
+    margin: 0;
+    padding: 0;
+}

@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sign In</title>
+        <meta charset="utf-8">
+       
+        <style>
+
+            *{padding: 0; margin: 0;}
+            
+            body{
+                color: #E9E9E9;              
+                font-family: "Motiva Sans", Sans-serif;
+                font-weight: normal;
+            }
+
+            .login{
+                
+                width: 300px;
+                height: 310px;               
+                background-color: #181A21;
+                min-width: 0px;
+                text-align: center;                
+                margin: 0 auto;            
+
+            }
+
+            .login input{
+                width: 200px;
+                height: 35px;
+                border: 1px solid grey;
+                padding-left: 20px ;
+                background-color: #8B929A;
+            }
+
+            .login .check input{
+                width: 10px;
+                height: 10px;
+                color: #8B929A;
+            }
+                   
+            .login button{
+                width: 220px;
+                height: 38px;
+                border: none;
+                background-color: #1999FF;
+                color: white;
+            }
+
+            .login a{
+                color: #aca6a6;
+            }
+
+            .login p{
+                display: inline-block;
+
+                padding-left: 40px;
+                margin: 0px;
+                color: #aca6a6;
+            }
+
+            .qr .newBeta{
+                
+                margin-left: 0px;
+                margin-right: 78px;
+                text-align: left;
+                display: inline-block;
+                padding-bottom: 8px;
+            }
+
+            .login .check{
+                float: left; /* để cho nó nhảy về bên trái*/
+                padding-left: 40px;
+                color: #aca6a6;
+            }
+
+            .login .check input{
+                width: 15px;
+                height: 15px;
+            }
+
+            .qr{
+                width: 200px;
+                height: 310px;
+                float:left;
+                margin:0 auto;
+                color: #aca6a6;
+            }
+
+            .box2{
+                float: left;
+            }
+
+            .textt{
+                width: 130px;
+                height: 70px;
+                font-size: small;
+                padding-left: 38px;
+                padding-top: 8px;
+                text-align: left;
+                color: #aca6a6;
+            }
+
+            .qr .imgQr{
+                width: 7px;
+                height: 70px;
+                text-align: left;
+                padding-top: 15px;
+            }
+
+            .qr .qrButton button{
+                width: 85px;
+                height: 35px;
+                border: none;
+                background-color: #8B929A;
+                color: white;
+                margin-right: 120px;
+                              
+            }
+
+            .qr .qrtext1 a{
+                color: #aca6a6;
+                margin-left: 0px;
+                margin-right: 20px;
+                text-align: left;
+                display: inline-block;
+            }
+
+            #bigBox .box{
+                
+                padding-top: 30px;
+                background-color: #181A21;
+                min-width: 0px;
+                text-align: center;
+                border-radius: 0; 
+                float: left;
+                margin: 0 auto;
+                margin-top: -300px;
+                /* padding: 20px; */
+                   
+            }
+
+            .boxmom{
+                width: 100vw;
+                height: 100vh;
+                background-image:linear-gradient( rgba(214, 214, 151, 0.011), rgba(214, 214, 151, 0.011)), 
+                url(https://store.akamai.steamstatic.com/public/shared/images/joinsteam/new_login_bg_strong_mask.jpg);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+            }
+
+            .container{
+                max-width: 960px;
+                margin: 0px auto;
+                
+                padding-top: 25px;
+            }
+
+          
+           
+            .logo{
+                float: left;
+                padding-top: 30px;
+                margin-right: 40px;
+                width: 176px;
+                height: 44px;
+                margin-bottom: 30px;
+               
+            }
+            .container .menu{
+                position: absolute;
+                left: 500px;
+                padding-top: 20px;
+            }
+            nav{
+                display: flex;
+                justify-content: space-between;
+                justify-items: center;
+                
+            }   
+            
+            
+            #main-menu{
+                display: flex;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            #main-menu li{
+                position : relative;
+            }
+
+            #main-menu li a{
+                color: #9b9595;
+                display: block;
+                padding: 4px 18px;
+                text-decoration: none;
+            }
+
+            #main-menu ul.sub-menu{
+                
+                position: absolute;
+                background-color: #171a21;
+                padding: 15px 0px;
+                list-style: none;
+                width: 150px;
+                border: 1px solid #1e1c1c;
+                display: none; /*ẩn các menu con đi*/
+            }
+
+            #main-menu li:hover>ul.sub-menu{ /*khi di chuot vao li thi menu con se hien ra*/
+                display: block;
+            }
+
+            #main-menu li:hover a{ /*lam sangs chu store community... khi di chuot vao*/
+                color: #dad8d8;
+            }
+            #main-menu ul.sub-menu a{
+                padding: 8px 15px;
+                color: #9b9595;
+                left: 0;
+            }
+           
+            #main-menu ul.sub-menu li:hover a{
+                color: #dad8d8;
+            }
+
+            #main-menu ul.sub-menu li:last-child a{
+                border: 3px;            
+            }
+
+            .tWrap{
+                position: relative;
+                width: 100vw;
+                height: 104px;
+                margin: 0px auto;
+                z-index: 402;
+                background-color: #171a21;
+            }
+
+            #global_actions{
+                position: absolute;
+                right: 0px;
+                top: 6px;
+                height: 21px;
+                line-height: 21px;
+                color: #b8b6b4;
+                font-size: 13px;
+                z-index: 401;  
+                vertical-align: top; 
+                margin-right: 135px;
+                display: inline-block;
+                padding-top: 8px;
+            }
+
+        
+            #global_actions > *{
+                vertical-align: top;
+            }
+
+            .greenBox{
+                color: #b8b6b4;
+                display: inline-block;
+            }
+            .greenBox .installContent{
+                background-color: #5c7e10;
+                
+            }
+
+            .installContent{
+                display: inline-block;
+                padding-left: 35px;
+                padding-right: 9px;
+                background-position: 10px 5px;
+                background-image: url(https://store.cloudflare.steamstatic.com/public/shared/images/header/btn_header_installsteam_download.png?v=1);
+                background-repeat: no-repeat;
+                text-decoration: none;
+                color: #b8b6b4;
+                font-weight: normal;
+                
+            }
+
+            .actionLink{
+                color: #b8b6b4;             
+                
+            }      
+           
+
+            #global_actions a{
+                text-decoration: none;
+                margin-left: 2px;
+                display: inline-block;
+            }
+
+            #global_actions #boxLanguage li{
+                position : relative;
+                list-style: none;
+            }
+
+            #global_actions #boxLanguage li a{
+                color: #b1abab;
+                display: block;             
+                text-decoration: none;
+                
+            }
+
+            #global_actions #boxLanguage ul.lang{
+                position: absolute;
+                background-color: #171a21;
+                padding: 15px 0px;
+                list-style: none;
+                width: 150px;
+                border: 1px solid #1e1c1c;
+                display: none; /*ẩn các menu con đi*/
+            }
+
+            #global_actions #boxLanguage li:hover>ul.lang{ /*khi di chuot vao li thi menu con se hien ra*/
+                display: block;
+            }
+
+            #global_actions #boxLanguage ul.lang a{
+                padding: 8px 15px;
+                border-bottom: 1px  #434343;    
+                left: 0;
+            }
+
+            #global_actions #boxLanguage li:hover a{ 
+                color: #dad8d8;
+            }
+            
+            #global_actions #boxLanguage ul.lang a{
+                padding: 8px 15px;
+                color: #b1abab;
+                left: 0;
+            }
+           
+            #global_actions #boxLanguage ul.lang li:hover a{
+                color: #dad8d8;
+            }
+
+            span{
+                display: inline-block;
+            }
+
+            #global_actions .greenBox a:hover {  /* lam sang khi di chuot */
+                color: #dad8d8;
+            }
+
+            #global_actions .actionLink:hover { 
+                color: #dad8d8;
+            }
+
+            .signinButton a:hover{
+                color: #dad8d8;
+            }
+            .qrtext1 a:hover{
+                color: #dad8d8;
+            }
+
+            .loginBottom{
+                flex-direction: column-reverse;
+                display: flex;
+                padding-top: 20px;
+                align-items: center;
+                margin-right: auto;
+                margin-left: auto;
+                width: 100%;
+                justify-content: center;
+                background-color: #181A21;
+                display: inline-block;
+                padding-left: 32%;
+                justify-content: center;
+                align-items: center;
+                padding-bottom: 10px;
+            }
+            .loginItem{
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                max-width: 200px;
+                display: inline-block;
+                
+            }
+
+            .subtext{
+                font-size: 14px;
+                color: #b8b6b4;
+            }
+
+             .loginLink{
+                max-width: 60%;
+                text-align: center;
+                font-size: 14px;
+                margin-bottom: 10px;
+                color: #FFFFFF;
+               
+            }
+
+            .joinImage{
+                width: 320px;
+                
+            }
+
+            .Item2{
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                max-width: 200px;
+            }
+            .loginBtn{
+                margin-top: 20px;
+                display: inline-block;
+            }
+
+            .loginBtn a{
+                margin: 20px 0 10px 0;
+                display: block;
+                text-align: center;
+            }
+            .btnv6{
+                border-radius: 2px;
+                border: none;
+                padding: 1px;
+                cursor: pointer;
+                text-decoration: none !important;
+                color: #fff !important;
+                background: transparent;
+            }
+
+            .btnv6 > span{
+                display: block;
+                background: transparent;
+                border: 1px solid rgba(255,255,255,0.4);
+                border-radius: 2px;
+            }
+
+            .subtext{
+                font-size: 14px;
+                color: #b8b6b4;
+                
+            }
+            .loginBottom .aa{
+                padding-bottom: 30px;
+            }
+        
+            .logninText{
+                text-align: center;
+                color: #fff;
+                font-size: 32px;
+                text-transform: uppercase;
+                letter-spacing: .055em;
+                font-weight: 200;
+                margin-bottom: 350px;
+               margin-right: 290px;
+                
+            }
+        </style>
+
+    </head>
+
+    <body>
+       
+       
+        <div class="tWrap">
+
+                <nav class="container">
+                    
+                    <a href="https://store.steampowered.com/" id="logo">
+                        <img src="https://store.cloudflare.steamstatic.com/public/shared/images/header/logo_steam.svg?t=962016" width="176" height="44">
+                    </a>
+
+                    <div class="menu">
+
+                        <ul id="main-menu">
+                            
+                            <li><a href="#">STORE</a>
+                                <ul class="sub-menu">
+                                    <li><a href="https://store.steampowered.com/">HOME</a></li>
+                                    <li><a href="https://store.steampowered.com/login/?redir=explore%2F%3Fsnr%3D1_60_4__global-responsive-menu&redir_ssl=1&snr=1_60_4__global-responsive-menu">
+                                        DISCOVERY QUEUE</a></li>
+                                    <li><a href="https://steamcommunity.com/login/home/?goto=%2Fmy%2Fwishlist%2F">
+                                        WISHLIST</a></li>
+                                    <li><a href="https://store.steampowered.com/points/shop/">
+                                        POINTS SHOP</a></li>
+                                    <li><a href="https://store.steampowered.com/news/">
+                                        NEWS</a></li>
+                                    <li><a href="https://store.steampowered.com/stats/">
+                                        STATS</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">COMMUNITY</a>
+                                <ul ul class="sub-menu">
+                                    <li><a href="https://steamcommunity.com/">HOME</a></li>
+                                    <li><a href="https://steamcommunity.com/discussions/">DISCUSSIONS QUEUE</a></li>
+                                    <li><a href="https://steamcommunity.com/workshop/">WORKSHOP</a></li>
+                                    <li><a href="https://steamcommunity.com/market/">MARKET</a></li>
+                                    <li><a href="https://steamcommunity.com/?subsection=broadcasts">BROADCAST</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="https://store.steampowered.com/about/">ABOUT</a></li>
+                            <li><a href="https://help.steampowered.com/en/">SUPPORT</a></li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+
+                <div id="global_actions">
+                    
+                        <div class="greenBox">
+                            <a class="installContent" href="https://store.steampowered.com/about/">Install Steam
+                            </a>
+                        </div>
+                        <a class="actionLink" href="https://store.steampowered.com/login/?redir=about%2F%3Fsnr%3D1_60_4__global-header&redir_ssl=1&snr=1_14_4__global-header">
+                            login</a>
+                        <a >|</a>
+                        <span>
+                            <ul id="boxLanguage">
+                                <li><a class="language" href="#">language</a>
+                                    <ul class="lang">
+                                        <li><a href="https://store.steampowered.com/login/?l=schinese&redir=about%2F%3Fsnr%3D1_60_4__global-header&redir_ssl=1&snr=1_14_4__global-header">
+                                            简体中文 (Simplified Chinese)</a></li>
+                                        <li><a href="https://store.steampowered.com/login/?l=japanese&redir=about%2F%3Fsnr%3D1_60_4__global-header&redir_ssl=1&snr=1_14_4__global-header">
+                                            日本語 (Japanese)</a></li>
+                                        <li><a href="https://store.steampowered.com/login/?l=koreana&redir=about%2F%3Fsnr%3D1_60_4__global-header&redir_ssl=1&snr=1_14_4__global-header">
+                                            한국어 (Korean)</a></li>
+                                        <li><a href="https://store.steampowered.com/login/?l=thai&redir=about%2F%3Fsnr%3D1_60_4__global-header&redir_ssl=1&snr=1_14_4__global-header">
+                                            ไทย (Thai)</a></li>
+                                        <li><a href="https://store.steampowered.com/login/?l=danish&redir=about%2F%3Fsnr%3D1_60_4__global-header&redir_ssl=1&snr=1_14_4__global-header">
+                                            Dansk (Danish)</a></li>
+                                        <li><a href="https://store.steampowered.com/login/?l=german&redir=about%2F%3Fsnr%3D1_60_4__global-header&redir_ssl=1&snr=1_14_4__global-header">
+                                            Deutsch (German)</a></li>
+                                        <li><a href="https://store.steampowered.com/login/?l=spanish&redir=about%2F%3Fsnr%3D1_60_4__global-header&redir_ssl=1&snr=1_14_4__global-header">Español - España (Spanish - Spain)</a></li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </span>
+                    
+                </div>
+        </div>
+
+        <div class="boxmom">
+
+            
+
+            <div id="bigBox">
+                <div style="display: flex; flex-direction: column; gap:8px; margin: 8px 16px;">
+                    <div class="logninText">Sign In</div>
+                </div>
+    
+            <div class="box login">
+                    
+                    <p style="color: #1999FF">Sign in with account name</p>
+                    
+                    <input type="text" clas="inputName" placeholder="" value>
+
+                    <br>
+                    <br/>
+                    <p>Password</p>
+                    <input type="password" placeholder="">
+                    <br/>
+                    <br>
+                    <div class="check">
+                        <input type="checkbox">
+                        Remember me
+                    </div>
+
+                    <div class="signinButton">
+                        <button>Sign in</button>
+                        <br/>
+                        <br>
+                        <a style="font-size: 12px;" href="https://help.steampowered.com/fr/wizard/HelpWithLogin?redir=https%3A%2F%2Fstore.steampowered.com%2Flogin%2F%3Fredir%3Dabout%252F%253Fsnr%253D1_60_4__global-header%26redir_ssl%3D1%26snr%3D1_14_4__global-header"
+                        >Help, I can't sign in</a>
+                        
+                    </div>                     
+                </div>
+
+                <div class="box qr">
+                    
+                        <div class="newBeta" style="color: #1999FF">New beta feature</div>
+                        <br>    
+                        <div class="box2 imgQr"> <img width="33px" src="https://simg.nicepng.com/png/small/27-276419_qr-code-awake-modular2-leftbox-download.png" ></div>  
+                        
+                        <div class="box2 textt" style="size: 5;">Steam Mobile App beta testers can sign in by scanning a QR code.</div>
+                        
+                        <div class="qrButton">
+                            <button>Learn more</button>
+                            <br>
+                            <br/>
+                        </div>  
+                        <div class="qrtext1">
+                            <a style="font-size: 12px"  href="https://store.steampowered.com/login/?redir=about%2F&redir_ssl=1&snr=1_14_4__global-header">
+                                I'm in the beta, show me a QR code</a>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        
+            <div class="loginBottom">
+                <div class="loginItem aa">
+                    <div class="subtext">Join Steam and discover thousands of games to play. 
+                    </div>
+                    <a class="loginLink" href="https://store.steampowered.com/about">Learn More</a>
+                </div>
+                <img alt="Join Steam" class="joinImage loginItem" src="https://store.cloudflare.steamstatic.com/public/shared/images/login/join_pc.png?v=1">
+                <div class="loginBtn  loginItem">
+                    <a target="_top" href="https://store.steampowered.com/join/?redir=%3Fl%3Drussian&snr=1_60_4__62"
+                    class="btnv6">
+                    <span>Join Steam</span>
+                </a>
+                <div class="subtext">It's free and easy to use.</div>
+                </div>
+            </div>
+        
+    </body>
+</html>
