@@ -1,0 +1,16 @@
+C:\Users\SURFACE\source\repos\HttpServerCuaThayLam\HttpServer\bin\Debug\netcoreapp3.1\HttpServer.exe
+C:\Users\SURFACE\source\repos\HttpServerCuaThayLam\HttpServer\bin\Debug\netcoreapp3.1\HttpServer.deps.json
+C:\Users\SURFACE\source\repos\HttpServerCuaThayLam\HttpServer\bin\Debug\netcoreapp3.1\HttpServer.runtimeconfig.json
+C:\Users\SURFACE\source\repos\HttpServerCuaThayLam\HttpServer\bin\Debug\netcoreapp3.1\HttpServer.runtimeconfig.dev.json
+C:\Users\SURFACE\source\repos\HttpServerCuaThayLam\HttpServer\bin\Debug\netcoreapp3.1\HttpServer.dll
+C:\Users\SURFACE\source\repos\HttpServerCuaThayLam\HttpServer\bin\Debug\netcoreapp3.1\HttpServer.pdb
+C:\Users\SURFACE\source\repos\HttpServerCuaThayLam\HttpServer\obj\Debug\netcoreapp3.1\HttpServer.csproj.AssemblyReference.cache
+C:\Users\SURFACE\source\repos\HttpServerCuaThayLam\HttpServer\obj\Debug\netcoreapp3.1\HttpServer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\SURFACE\source\repos\HttpServerCuaThayLam\HttpServer\obj\Debug\netcoreapp3.1\HttpServer.AssemblyInfoInputs.cache
+C:\Users\SURFACE\source\repos\HttpServerCuaThayLam\HttpServer\obj\Debug\netcoreapp3.1\HttpServer.AssemblyInfo.cs
+C:\Users\SURFACE\source\repos\HttpServerCuaThayLam\HttpServer\obj\Debug\netcoreapp3.1\HttpServer.csproj.CoreCompileInputs.cache
+C:\Users\SURFACE\source\repos\HttpServerCuaThayLam\HttpServer\obj\Debug\netcoreapp3.1\HttpServer.dll
+C:\Users\SURFACE\source\repos\HttpServerCuaThayLam\HttpServer\obj\Debug\netcoreapp3.1\HttpServer.pdb
+C:\Users\SURFACE\source\repos\HttpServerCuaThayLam\HttpServer\obj\Debug\netcoreapp3.1\HttpServer.genruntimeconfig.cache
+C:\Users\SURFACE\source\repos\HttpServerCuaThayLam\HttpServer\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\SURFACE\source\repos\HttpServerCuaThayLam\HttpServer\obj\Debug\netcoreapp3.1\HttpServer.csproj.CopyComplete

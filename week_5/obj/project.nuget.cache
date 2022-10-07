@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "RIZoMFhDlmv9zXiQeaYla1npXJUWZfSooTgJr4rk5+uQbp2Zzoxet2H7CO3mrDVwmXItOe1s4telY+SH60kYxw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\SURFACE\\source\\repos\\HttpServerCuaThayLam\\HttpServer\\HttpServer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\SURFACE\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
