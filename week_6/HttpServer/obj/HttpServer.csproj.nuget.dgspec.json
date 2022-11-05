@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\SURFACE\\source\\repos\\HttpServerCuaThayLam\\HttpServer\\HttpServer.csproj": {}
+    "C:\\Users\\SURFACE\\Desktop\\HomeworkInf_2\\week_6\\HttpServer\\HttpServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\SURFACE\\source\\repos\\HttpServerCuaThayLam\\HttpServer\\HttpServer.csproj": {
+    "C:\\Users\\SURFACE\\Desktop\\HomeworkInf_2\\week_6\\HttpServer\\HttpServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SURFACE\\source\\repos\\HttpServerCuaThayLam\\HttpServer\\HttpServer.csproj",
+        "projectUniqueName": "C:\\Users\\SURFACE\\Desktop\\HomeworkInf_2\\week_6\\HttpServer\\HttpServer.csproj",
         "projectName": "HttpServer",
-        "projectPath": "C:\\Users\\SURFACE\\source\\repos\\HttpServerCuaThayLam\\HttpServer\\HttpServer.csproj",
+        "projectPath": "C:\\Users\\SURFACE\\Desktop\\HomeworkInf_2\\week_6\\HttpServer\\HttpServer.csproj",
         "packagesPath": "C:\\Users\\SURFACE\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SURFACE\\source\\repos\\HttpServerCuaThayLam\\HttpServer\\obj\\",
+        "outputPath": "C:\\Users\\SURFACE\\Desktop\\HomeworkInf_2\\week_6\\HttpServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\SURFACE\\AppData\\Roaming\\NuGet\\NuGet.Config",
