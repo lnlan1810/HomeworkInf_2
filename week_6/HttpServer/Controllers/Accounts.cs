@@ -1,4 +1,4 @@
-﻿using HttpServer.Attributes;
+using HttpServer.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -11,30 +11,40 @@ namespace HttpServer.Controllers
     [HttpController("accounts")]
     public class Accounts
     {
+        [HttpController("accounts")]
+        public Account GetAccount(int id)
+        {
+            List<Account> accounts = new List<Account>();
+            accounts.Add(new Account() { Id = 1, Login = "Ivan", Password = "123" });
+
+            return accounts.FirstOrDefault(t => t.Id == id);
+        }
+
         [HttpGET]
         public List<Account> GetAccounts()
         {
-            var accounts = new List<Account>();
+            List<Account> accounts = new List<Account>();
 
             string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SteamDB;Integrated Security=True";
 
-            string sqlExpression = "SELECT * FROM Accounts";
+            string sqlExpression = "SELECT * FROM  [dbo].[Table]";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(sqlExpression, connection);
                 SqlDataReader reader = command.ExecuteReader();
 
-                if (reader.HasRows) // если есть данные
+                if (reader.HasRows)
                 {
-                    while (reader.Read()) // построчно считываем данные
+                    while (reader.Read())
                     {
                         accounts.Add(new Account
-                            (
-                            reader.GetInt32(0),
-                            reader.GetString(1),
-                            reader.GetString(2)
-                            ));
+                        {
+
+                            Id = reader.GetInt32(0),
+                            Login = reader.GetString(1),
+                            Password = reader.GetString(2)
+                        });
                     }
                 }
 
@@ -44,37 +54,6 @@ namespace HttpServer.Controllers
             return accounts;
         }
 
-        [HttpGET]
-        public Account GetAccountById(int id)
-        {
-            Account account = null;
-
-            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SteamDB;Integrated Security=True";
-            string sqlExpression = $"SELECT * FROM Accounts WHERE Id = {id}";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                SqlCommand command = new SqlCommand(sqlExpression, connection);
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    reader.Read();
-
-                    account = new Account
-                        (
-                        reader.GetInt32(0),
-                        reader.GetString(1),
-                        reader.GetString(2)
-                        );
-                }
-
-                reader.Close();
-            }
-
-            return account;
-        }
         [HttpPOST]
         public void SaveAccount(string login, string password)
         {
@@ -91,5 +70,25 @@ namespace HttpServer.Controllers
         }
     }
 
-   
+    public class Account
+    {
+        public int Id { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
+
+        public Account()
+        {
+
+        }
+
+        public Account(int id, string login, string password)
+        {
+            Id = id;
+            Login = login;
+            Password = password;
+        }
+    }
+
+
+
 }
