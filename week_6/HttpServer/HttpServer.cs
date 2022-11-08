@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Net;
 using System.IO;
 using System.Text.Json;
@@ -16,7 +16,7 @@ namespace HttpServer
         private readonly HttpListener _httpListener;
         public string SettingsPath;
 
-        private ServerSettings serverSettings;
+        private ServerSettings _serverSettings;
 
         public ServerStatus ServerStatus { get; private set; } = ServerStatus.Stopped;
 
@@ -30,27 +30,28 @@ namespace HttpServer
         {
             if (ServerStatus == ServerStatus.Started)
             {
-                Console.WriteLine("Сервер уже запущен!");
+                Console.WriteLine("Server is already running!");
                 return;
             }
 
             if (!File.Exists(SettingsPath))
             {
-                Console.WriteLine("Файл настроек не найден!");
+                Console.WriteLine("Settings file not found!");
                 return;
             }
-            serverSettings = JsonSerializer.Deserialize<ServerSettings>(File.ReadAllBytes(SettingsPath));
+            _serverSettings = JsonSerializer.Deserialize<ServerSettings>(File.ReadAllBytes(SettingsPath));
 
             //var a = "http://localhost:" + serverSettings.Port + "/";
             _httpListener.Prefixes.Clear();
-            _httpListener.Prefixes.Add("http://localhost:" + serverSettings.Port + "/");
+            _httpListener.Prefixes.Add("http://localhost:" + _serverSettings.Port + "/");
 
-            Console.WriteLine("Запуск сервера...");
+            Console.WriteLine("Server start...");
             _httpListener.Start();
-            ServerStatus = ServerStatus.Started;
-            Console.WriteLine("Сервер запущен.");
 
-            await Listen();
+            Console.WriteLine("Server started");
+            ServerStatus = ServerStatus.Started;
+
+            Listening();
         }
 
         public void Stop()
@@ -58,121 +59,90 @@ namespace HttpServer
             if (ServerStatus == ServerStatus.Stopped)
                 return;
 
-            Console.WriteLine("Остановка сервера...");
+            Console.WriteLine("Server stop...");
             _httpListener.Stop();
             ServerStatus = ServerStatus.Stopped;
-            Console.WriteLine("Сервер остановлен.");
+            Console.WriteLine("Server stopped.");
         }
 
-        private async Task Listen()
+        private async void Listening()
         {
-            while (true)
+            while (_httpListener.IsListening)
             {
-                HttpListenerContext _httpContext;
-                try
-                {
-                    _httpContext = await _httpListener.GetContextAsync();
-                }
-                catch
-                {
-                    return;
-                }
+                var _httpContext = await _httpListener.GetContextAsync();
+                if (MethodHandler(_httpContext)) return;
 
-                //MethodHandler(_httpContext);
-
-                HttpListenerRequest request = _httpContext.Request;
-                HttpListenerResponse response = _httpContext.Response;
-
-
-                //var a = request.Url
-                //    .Segments
-                //    .Skip(2)
-                //    .Select(s => s.Replace("/", ""))
-                //    .ToArray();
-                //Console.WriteLine(request.HttpMethod);
-
-                Console.WriteLine(request.RawUrl);
-                Console.WriteLine(request.HttpMethod);
-
-                byte[] buffer;
-                if (Directory.Exists(serverSettings.Path))
-                {
-                    buffer = GetFileAndSetHeader(request, response);
-
-                    if (buffer == null)
-                    {
-                        if (MethodHandler(_httpContext))
-                            continue;
-
-                        response.Headers.Set("Content-type", "text/plain");
-
-                        response.StatusCode = (int)HttpStatusCode.NotFound;
-                        string error = "error 404 - not found";
-
-                        buffer = Encoding.UTF8.GetBytes(error);
-                    }
-                }
-                else
-                {
-                    var errorMessage = $"Directory {serverSettings.Path} is not found";
-                    buffer = Encoding.UTF8.GetBytes(errorMessage);
-                }
-
-                WriteIntoOutput(response, buffer);
+                StaticFiles(_httpContext.Request, _httpContext.Response);
             }
         }
 
-        private byte[] GetFileAndSetHeader(HttpListenerRequest request, HttpListenerResponse response)
+        private void StaticFiles(HttpListenerRequest request, HttpListenerResponse response)
+        {
+            byte[] buffer;
+
+            if (Directory.Exists(_serverSettings.Path))
+            {
+                buffer = getFile(request.RawUrl.Replace("%20", " "));
+
+                if (buffer == null)
+                {
+                    response.Headers.Set("Content-Type", "text/plain");
+
+                    response.StatusCode = (int)HttpStatusCode.NotFound;
+                    string err = "404- not found";
+                    buffer = Encoding.UTF8.GetBytes(err);
+                }
+            }
+
+            else
+            {
+                var err = $"Directory '{_serverSettings.Path}'  not found";
+                buffer = Encoding.UTF8.GetBytes(err);
+            }
+
+            Stream output = response.OutputStream;
+            output.Write(buffer, 0, buffer.Length);
+
+            output.Close();
+
+        }
+
+        private byte[] getFile(string rawUrl)
         {
             byte[] buffer = null;
-            var rawUrl = request.RawUrl;
-            var filePath = serverSettings.Path + rawUrl;
+            var filePath = _serverSettings.Path + rawUrl;
+
             if (Directory.Exists(filePath))
             {
-                filePath += "/index.html";
-                response.Headers.Set("Content-type", "text/html");
-                response.StatusCode = (int)HttpStatusCode.OK;
+                //каталог
+                filePath = filePath + "/index.html";
                 if (File.Exists(filePath))
+                {
                     buffer = File.ReadAllBytes(filePath);
+                }
+
             }
             else if (File.Exists(filePath))
             {
-                var extencion = rawUrl.Substring(rawUrl.IndexOf('.') + 1);
-                switch (extencion)
-                {
-                    case "png":
-                        response.Headers.Set("Content-type", "image/png");
-                        break;
-                    case "gif":
-                        response.Headers.Set("Content-type", "image/gif");
-                        break;
-                    case "css":
-                        response.Headers.Set("Content-type", "text/css");
-                        break;
-                }
-                response.StatusCode = (int)HttpStatusCode.OK;
+                //файл
                 buffer = File.ReadAllBytes(filePath);
             }
 
             return buffer;
+
         }
 
         private bool MethodHandler(HttpListenerContext _httpContext)
         {
-            // объект запроса
             HttpListenerRequest request = _httpContext.Request;
 
-            // объект ответа
             HttpListenerResponse response = _httpContext.Response;
 
-            Console.WriteLine(request.RawUrl);
-            Console.WriteLine(request.HttpMethod);
+            if (_httpContext.Request.Url.Segments.Length > 1) return false;
 
-            if (request.Url.Segments.Length < 2) return false;
+            string controllerName = _httpContext.Request.Url.Segments[1].Replace("/", "");
 
-            string controllerName = request.Url.Segments[1].Replace("/", "");
-
-            string[] strParams = request.Url
+            string[] strParams = _httpContext.Request.Url
                 .Segments
                 .Skip(2)
                 .Select(s => s.Replace("/", ""))
@@ -180,129 +150,36 @@ namespace HttpServer
 
             var assembly = Assembly.GetExecutingAssembly();
 
-            var controller = assembly
-                .GetTypes()
-                .Where(t => Attribute.IsDefined(t, typeof(HttpController)))
-                .FirstOrDefault
-                (
-                    c => c.Name.ToLower() == controllerName.ToLower()
-                    //c.GetProperties()[0].Name.ToLower() == controllerName.ToLower()
-                );
+            var controller = assembly.GetTypes().Where(t => Attribute.IsDefined(t, typeof(HttpController)))
+                .FirstOrDefault(c => c.Name.ToLower() == controllerName.ToLower());
 
             if (controller == null) return false;
-            Console.WriteLine("control success");
 
-            var methods = controller
-                .GetMethods()
-                .Where(t => t.GetCustomAttributes(true).Any(attr => attr.GetType().Name == $"Http{request.HttpMethod}"))
+            var test = typeof(HttpController).Name;
+            var method = controller.GetMethods().Where(t => t.GetCustomAttributes(true).Any(attr => attr.GetType().Name == $"http{_httpContext.Request.HttpMethod}"))
+                .FirstOrDefault();
+
+            if (method == null) return false;
+
+
+            Object[] queryParms = method.GetParameters()
+                .Select((p, i) => Convert.ChangeType(strParams[i], p.ParameterType))
                 .ToArray();
-            MethodInfo method = null;
-            if (request.HttpMethod == "GET")
-            {
-                if (strParams.Length == 0)
-                    method = methods.FirstOrDefault(m => m.GetParameters().Length == 0);
-                else
-                    method = methods.FirstOrDefault(m => m.GetParameters().Length > 0);
 
-                object[] queryParams = method
-                    .GetParameters()
-                    .Select((p, i) => Convert.ChangeType(strParams[i], p.ParameterType))
-                    .ToArray();
-                var ret = method.Invoke(Activator.CreateInstance(controller), queryParams);
-                response.ContentType = "Application/json";
+            var ret = method.Invoke(Activator.CreateInstance(controller), queryParms);
 
-                byte[] buffer = Encoding.ASCII.GetBytes(JsonSerializer.Serialize(ret));
+            response.ContentType = "Application/json";
 
-                WriteIntoOutput(response, buffer);
-
-                return true;
-            }
-            else
-            {
-                var requestBody = ReadRequestBody(request.InputStream);
-                if (requestBody.Length == 0)
-                    method = methods.FirstOrDefault(m => m.GetParameters().Length == 0);
-                else
-                    method = methods.FirstOrDefault(m => m.GetParameters().Length > 0);
-                var ret = method.Invoke(Activator.CreateInstance(controller), ParsePostBody(requestBody));
-                response.ContentType = "Application/json";
-
-                byte[] buffer = Encoding.ASCII.GetBytes(JsonSerializer.Serialize(ret));
-
-                WriteIntoOutput(response, buffer);
-
-                return true;
-            }
-            //var methods = controller
-            //    .GetMethods()
-            //    .Where(t => t.GetCustomAttributes(true).Any(attr => attr.GetType().Name == $"Http{request.HttpMethod}"))
-            //    .ToArray();
-            //MethodInfo method = null;
-            //if (strParams.Length == 0)
-            //    method = methods.FirstOrDefault(m => m.GetParameters().Length == 0);
-            //else
-            //    method = methods.FirstOrDefault(m => m.GetParameters().Length > 0);
-            //if (method == null) return false;
-            //Console.WriteLine("method success");
-            //object[] queryParams = method
-            //    .GetParameters()
-            //    .Select((p, i) => Convert.ChangeType(strParams[i], p.ParameterType))
-            //    .ToArray();
-
-            //var ret = method.Invoke(Activator.CreateInstance(controller), queryParams);
-
-            //response.ContentType = "Application/json";
-
-            //byte[] buffer = Encoding.ASCII.GetBytes(JsonSerializer.Serialize(ret));
-
-            //WriteIntoOutput(response, buffer);
-
-            //return true;
-        }
-
-        private void WriteIntoOutput(HttpListenerResponse response, byte[] buffer)
-        {
+            byte[] buffer = Encoding.ASCII.GetBytes(JsonSerializer.Serialize(ret));
             response.ContentLength64 = buffer.Length;
+
             Stream output = response.OutputStream;
             output.Write(buffer, 0, buffer.Length);
+
             output.Close();
+
+            return true;
         }
 
-        private PropertyInfo GetAttributeProperty(Type type, string propertyName)
-        {
-            return type.GetCustomAttribute(typeof(HttpController)).GetType().GetProperty(propertyName);
-        }
-
-        private string ReadRequestBody(Stream inputStream)
-        {
-            string documentContents;
-            using (Stream receiveStream = inputStream)
-            {
-                using (StreamReader readStream = new StreamReader(receiveStream, Encoding.UTF8))
-                {
-                    documentContents = readStream.ReadToEnd();
-                }
-            }
-            return documentContents;
-        }
-
-        private string[] ParsePostBody(string body)
-        {
-            var result = new List<string>();
-            for (int i = 0; i < body.Length; i++)
-            {
-                var arg = new StringBuilder();
-                if (body[i] == '=')
-                {
-                    while (i != body.Length && body[i] != '&')
-                    {
-                        arg.Append(body[i]);
-                        i++;
-                    }
-                    result.Add(arg.ToString().Substring(1));
-                }
-            }
-            return result.ToArray();
-        }
     }
 }
