@@ -1,0 +1,12 @@
+C:\Users\SURFACE\source\hw\New folder\Space\Space\bin\Debug\Space.exe.config
+C:\Users\SURFACE\source\hw\New folder\Space\Space\bin\Debug\Space.exe
+C:\Users\SURFACE\source\hw\New folder\Space\Space\bin\Debug\Space.pdb
+C:\Users\SURFACE\source\hw\New folder\Space\Space\obj\Debug\Space.csproj.AssemblyReference.cache
+C:\Users\SURFACE\source\hw\New folder\Space\Space\obj\Debug\Space.csproj.SuggestedBindingRedirects.cache
+C:\Users\SURFACE\source\hw\New folder\Space\Space\obj\Debug\Space.Form1.resources
+C:\Users\SURFACE\source\hw\New folder\Space\Space\obj\Debug\Space.Properties.Resources.resources
+C:\Users\SURFACE\source\hw\New folder\Space\Space\obj\Debug\Space.csproj.GenerateResource.cache
+C:\Users\SURFACE\source\hw\New folder\Space\Space\obj\Debug\Space.csproj.CoreCompileInputs.cache
+C:\Users\SURFACE\source\hw\New folder\Space\Space\obj\Debug\Space.exe
+C:\Users\SURFACE\source\hw\New folder\Space\Space\obj\Debug\Space.pdb
+C:\Users\SURFACE\source\hw\New folder\Space\Space\obj\Debug\Space.FormStart.resources
